@@ -37,15 +37,15 @@ const ex_output_2 = [
   [1, 0], [1, 0], [1, 1], [1, 1]
 ]
 
-//console.log('ex_1')
-let qtree = new QuadTree(ex_grid_1)
-//qtree.render()
-//console.log('ex_output:', ex_output_1)
+console.log('ex_1')
+let qtree_1 = new QuadTree(ex_grid_1)
+console.log('my_output:', qtree_1.render())
+console.log('ex_output:', ex_output_1)
 
-//console.log('ex_2')
-qtree = new QuadTree(ex_grid_2)
-//qtree.render()
-//console.log('ex_output:', ex_output_2)
+console.log('ex_2')
+let qtree_2 = new QuadTree(ex_grid_2)
+console.log('my_output_2:', qtree_2.render())
+console.log('ex_output:', ex_output_2)
 
 // recursion
 const Node = function(grid, x, y, len) {
@@ -104,12 +104,12 @@ const Node = function(grid, x, y, len) {
   this.processLeaf()
 }
 
-console.log('recursion')
+// console.log('recursion')
 
 const recursion_1 = new Node(ex_grid_1, 0, 0, ex_grid_1.length)
-console.log('my_output_1 -', recursion_1.render())
-console.log('ex_output_1 -', ex_output_1)
+// console.log('my_output_1 -', recursion_1.render())
+// console.log('ex_output_1 -', ex_output_1)
 
 const recursion_2 = new Node(ex_grid_2, 0, 0, ex_grid_2.length)
-console.log('my_output_2 -', recursion_2.render())
-console.log('ex_output_2 -', ex_output_2)
+// console.log('my_output_2 -', recursion_2.render())
+// console.log('ex_output_2 -', ex_output_2)

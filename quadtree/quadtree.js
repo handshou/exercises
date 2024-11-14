@@ -6,28 +6,26 @@ class QuadTree {
 
     this.isLeaf = 0
     this.val = 0 // if isLeaf = 0, val can be anything (1 or 0)
-    this.processQuad()
 
     this.topLeft = null
     this.topRight = null
     this.bottomLeft = null
     this.bottomRight = null
-  }
 
-  /**
-   * @param {QuadTree} quadTree
-   * @return void
-   */
-  processQuad() {
-    assert(Array.isArray(this.getGrid()), 'Expect this.grid to be a non-null array')
-    let val = this.getGrid()[0][0]
-    const isLeaf = Number(this.getGrid().flat().every((element) => {
-      return element === 1 || element === 0 // ensure element is either 1 or 0
-    }) && this.getGrid().flat().every((element, _index, arr) => element === arr[0]))
-    this.setIsLeaf(isLeaf)
-    this.setVal(val)
+    /**
+     * @return void
+     */
+    this.processQuad = function() {
+      assert(Array.isArray(this.getGrid()), 'Expect this.getGrid() to be a non-null array')
+      let val = this.getGrid()[0][0]
+      const isLeaf = Number(this.getGrid().flat().every((element) => {
+        return element === 1 || element === 0 // ensure element is either 1 or 0
+      }) && this.getGrid().flat().every((element, _index, arr) => element === arr[0]))
+      this.setIsLeaf(isLeaf)
+      this.setVal(val)
+    }
+    this.processQuad()
   }
-
 
   /**
    * @param {number[][]} grid
@@ -81,21 +79,17 @@ class QuadTree {
     this.val = val
   }
 
-  render() {
+  render(result = []) {
+    result.push(this.print())
     if (!this.isLeaf) {
-      console.log(this.print())
       this.split(this.getGrid())
-
-      console.log(this.topLeft.print())
-      console.log(this.topRight.print())
-      console.log(this.bottomLeft.print())
-      console.log(this.bottomRight.print())
-
-      this.topLeft.render()
-      this.topRight.render()
-      this.bottomLeft.render()
-      this.bottomRight.render()
+      this.topLeft.render(result)
+      this.topRight.render(result)
+      this.bottomLeft.render(result)
+      this.bottomRight.render(result)
     }
+
+    return result
   }
 
   print() {
