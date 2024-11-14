@@ -1,27 +1,32 @@
-# Files
+# Quadtree (Nov 2024)
 
+## Files
+
+```
 .
-├── main.js
-├── quadtree.js
-└── quadtree.notes
+├── main.js         // Test logic
+└── quadtree.js     // Class
+```
 
-Run: node main.js
+Run: `node main.js`
 
-# Test Case 1
+## Test Case 1
 
-Output
+### Output
 
+```
 [ 0, 0 ]
 [ 1, 0 ]
 [ 1, 1 ]
 [ 1, 1 ]
 [ 1, 0 ]
+```
 
 Passed, but refer to Test Case 2 for format
 
-# Test Case 2
+## Test Case 2
 
-Logic 
+### Logic 
 
 If the current grid has the same value (i.e all 1's or all 0's) 
   set isLeaf True and set val to the value of the grid 
@@ -31,7 +36,7 @@ If the current grid has different values,
   and divide the current grid into four sub-grids as shown in the photo.
 Recurse for each of the children with the proper sub-grid.
 
-Modifications
+### Modifications
 
 ```javascript
   render() {
@@ -50,8 +55,9 @@ Modifications
   }
 ```
 
-Output
+### Output
 
+```
 [ false, 1 ]
 [ true, 1 ]
 [ false, 0 ]
@@ -62,8 +68,9 @@ Output
 [ true, 0 ]
 [ true, 1 ]
 [ true, 1 ]
+```
 
-What is wrong
+### What is wrong
 
 - Print when isLeaf=false => Revise root and branch logic, print root
 - Print is missing null values when entire quadTree isLeaf
