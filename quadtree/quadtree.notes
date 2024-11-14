@@ -1,3 +1,17 @@
+Test Case 1
+
+Output
+
+[ 0, 0 ]
+[ 1, 0 ]
+[ 1, 1 ]
+[ 1, 1 ]
+[ 1, 0 ]
+
+Passed, but refer to Test Case 2 for format
+
+Test Case 2
+
 Logic 
 
 If the current grid has the same value (i.e all 1's or all 0's) 

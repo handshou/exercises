@@ -19,9 +19,9 @@ class QuadTree {
   _processQuad() {
     assert(Array.isArray(this.getGrid()), 'Expect this.grid to be a non-null array')
     let val = this.getGrid()[0][0]
-    const isLeaf = this.getGrid().flat().every((element) => {
+    const isLeaf = Number(this.getGrid().flat().every((element) => {
       return element === 1 || element === 0 // ensure element is either 1 or 0
-    }) && this.getGrid().flat().every((element, _index, arr) => element === arr[0])
+    }) && this.getGrid().flat().every((element, _index, arr) => element === arr[0]))
     this.setIsLeaf(isLeaf)
     this.setVal(val)
   }
@@ -91,7 +91,15 @@ class QuadTree {
   }
 }
 
-const ex_grid = [
+const ex_grid_1 = [
+  [0,1],[1,0]
+]
+
+const ex_output_1 = [
+  [0,1],[1,0],[1,1],[1,1],[1,0]
+]
+
+const ex_grid_2 = [
   [1, 1, 1, 1, 0, 0, 0, 0],
   [1, 1, 1, 1, 0, 0, 0, 0],
   [1, 1, 1, 1, 1, 1, 1, 1],
@@ -102,11 +110,16 @@ const ex_grid = [
   [1, 1, 1, 1, 0, 0, 0, 0],
 ]
 
-const ex_output = [
+const ex_output_2 = [
   [0, 1], [1, 1], [0, 1], [1, 1], [1, 0], null, null, null, null, [1, 0], [1, 0], [1, 1], [1, 1]
 ]
 
-const qt = new QuadTree(ex_grid)
+console.log('ex_1')
+let qt = new QuadTree(ex_grid_1)
 qt.render()
+console.log('ex_output:', ex_output_1)
 
-console.log('ex_output:', ex_output)
+console.log('ex_2')
+qt = new QuadTree(ex_grid_2)
+qt.render()
+console.log('ex_output:', ex_output_2)
