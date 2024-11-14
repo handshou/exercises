@@ -9,36 +9,43 @@ class QuadTree {
     this.topRight = null
     this.bottomLeft = null
     this.bottomRight = null
-    this._processQuad(this)
-  }
-
-  getGrid() {
-    return this.grid
-  }
-
-  setIsLeaf(isLeaf) {
-    this.isLeaf = isLeaf
-  }
-
-  setVal(val) {
-    this.val = val
+    this._processQuad()
   }
 
   /**
    * @param {QuadTree} quadTree
    * @return void
    */
-  _processQuad(quadTree) {
-    const qt = quadTree.getGrid()
-    console.log('qt', qt)
-    assert(Array.isArray(qt), 'Expect qt to be a non-null array')
-    let val = 0
-    const isLeaf = qt.flat().every((element) => {
-      val = element // set element value
+  _processQuad() {
+    const grid = this.getGrid()
+    assert(Array.isArray(grid), 'Expect qt to be a non-null array')
+    let val = grid[0][0]
+    const isLeaf = grid.flat().every((element) => {
       return element === 1 || element === 0 // ensure element is either 1 or 0
+    }) && grid.flat().every((element, _index, arr) => element === arr[0])
+    this.setIsLeaf(isLeaf)
+    this.setVal(val)
+  }
+
+  /**
+   * @param {number[][]} grid
+   * @return {{topLeftQuad: number[][], topRightQuad: number[][], bottomLeftQuad: number[][], bottomRightQuad: number[][]}}
+   */
+  _processGrid(grid) {
+    const axis = grid[0].length / 2
+    const topLeftQuad = this._sliceGrid(grid, 0, 0, axis)
+    const topRightQuad = this._sliceGrid(grid, axis, 0, axis)
+    const bottomLeftQuad = this._sliceGrid(grid, 0, axis, axis)
+    const bottomRightQuad = this._sliceGrid(grid, axis, axis, axis)
+    return { topLeftQuad, topRightQuad, bottomLeftQuad, bottomRightQuad }
+  }
+
+  _sliceGrid(grid, x, y, length) {
+    assert(Array.isArray(grid))
+    return grid.slice(y, y + length).map((row) => {
+      assert(Array.isArray(row))
+      return row.slice(x, x + length)
     })
-    quadTree.setIsLeaf(isLeaf)
-    quadTree.setVal(val)
   }
 
   /**
@@ -53,35 +60,31 @@ class QuadTree {
     this.bottomRight = new QuadTree(bottomRightQuad)
   }
 
-  /**
-   * @param {number[][]} grid
-   * @return {{topLeftQuad: number[][], topRightQuad: number[][], bottomLeftQuad: number[][], bottomRightQuad: number[][]}}
-   */
-  _processGrid(grid) {
-    const axis = grid[0].length / 2
-    const topLeftQuad = this._sliceGrid(grid,0,0,axis)
-    const topRightQuad = this._sliceGrid(grid,axis,0,axis)
-    const bottomLeftQuad = this._sliceGrid(grid,0,axis,axis)
-    const bottomRightQuad = this._sliceGrid(grid,axis,axis,axis)
-    return { topLeftQuad, topRightQuad, bottomLeftQuad, bottomRightQuad }
+  getGrid() {
+    return this.grid
   }
 
-  _sliceGrid(grid, x, y, length) {
-    assert(Array.isArray(grid))
-    return grid.slice(y, y + length).map((row) => {
-      assert(Array.isArray(row))
-      return row.slice(x, x + length)
-    })
+  setIsLeaf(isLeaf) {
+    this.isLeaf = isLeaf
+  }
+
+  setVal(val) {
+    this.val = val
   }
 
   render() {
-    this.split(this.grid)
-    return [
-      this.topLeft.print(),
-      this.topRight.print(),
-      this.bottomLeft.print(),
-      this.bottomRight.print(),
-    ]
+    if (!this.isLeaf) {
+      console.log(this.print())
+
+      this.split(this.getGrid())
+      this.topLeft.render()
+      this.topRight.render()
+      this.bottomLeft.render()
+      this.bottomRight.render()
+
+    } else {
+      console.log(this.print())
+    }
   }
 
   print() {
@@ -102,19 +105,4 @@ const ex_grid = [
 
 const qt = new QuadTree(ex_grid)
 qt.render()
-
-/**
- * @param {number[][]} grid
- * @return {_Node}
- */
-var construct = function (grid) {
-  const axisPosition = grid[0].length / 2
-
-  const topLeftNode = grid[0][0]
-  const topRightNode = grid[0][axisPosition]
-  const bottomLeftNode = grid[axisPosition][0]
-  const bottomRightNode = grid[axisPosition][axisPosition]
-}
-
-construct(ex_grid)
 
