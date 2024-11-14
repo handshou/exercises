@@ -17,12 +17,11 @@ class QuadTree {
    * @return void
    */
   _processQuad() {
-    const grid = this.getGrid()
-    assert(Array.isArray(grid), 'Expect qt to be a non-null array')
-    let val = grid[0][0]
-    const isLeaf = grid.flat().every((element) => {
+    assert(Array.isArray(this.getGrid()), 'Expect this.grid to be a non-null array')
+    let val = this.getGrid()[0][0]
+    const isLeaf = this.getGrid().flat().every((element) => {
       return element === 1 || element === 0 // ensure element is either 1 or 0
-    }) && grid.flat().every((element, _index, arr) => element === arr[0])
+    }) && this.getGrid().flat().every((element, _index, arr) => element === arr[0])
     this.setIsLeaf(isLeaf)
     this.setVal(val)
   }
@@ -75,15 +74,15 @@ class QuadTree {
   render() {
     if (!this.isLeaf) {
       console.log(this.print())
-
       this.split(this.getGrid())
+      console.log(this.topLeft.print())
+      console.log(this.topRight.print())
+      console.log(this.bottomLeft.print())
+      console.log(this.bottomRight.print())
       this.topLeft.render()
       this.topRight.render()
       this.bottomLeft.render()
       this.bottomRight.render()
-
-    } else {
-      console.log(this.print())
     }
   }
 
@@ -103,6 +102,11 @@ const ex_grid = [
   [1, 1, 1, 1, 0, 0, 0, 0],
 ]
 
+const ex_output = [
+  [0, 1], [1, 1], [0, 1], [1, 1], [1, 0], null, null, null, null, [1, 0], [1, 0], [1, 1], [1, 1]
+]
+
 const qt = new QuadTree(ex_grid)
 qt.render()
 
+console.log('ex_output:', ex_output)
