@@ -50,7 +50,7 @@ Run: `node main.js`
    - Combined with tree construction, the overall time complexity remains:
    $$O(N \cdot \log(N))$$
 
-### Total time complexity:
+### Total Time Complexity:
 $$
 O(N \cdot \log(N))
 $$
@@ -75,11 +75,7 @@ $$
 O(N)
 $$
 
-## New Strategy
-
-...
-
-## Written Notes
+## New Strategy, Written Notes
 ![written notes](notes.png)
 
 ## Miscellaneous
