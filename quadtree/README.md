@@ -43,16 +43,12 @@ Run: `node main.js`
    - The grid is split recursively, and at each level, the work is proportional to $O(N)$.
    - Total levels of recursion: $\log(N)$ (as the grid is divided by 4 at each step).
    - Total time complexity:
-     $$
-     O(N \cdot \log(N))
-     $$
+   $$O(N \cdot \log(N))$$
 
 2. **Processing the QuadTree**:
    - Every node is processed at most once, and processing each node takes $O(N)$ time.
    - Combined with tree construction, the overall time complexity remains:
-     $$
-     O(N \cdot \log(N))
-     $$
+   $$O(N \cdot \log(N))$$
 
 ### Space Complexity
 1. **Recursive Stack**:
