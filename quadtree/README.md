@@ -316,7 +316,7 @@ This single pass ensures the elements are both valid binary values and uniform.
 ---
 
 ## Written Notes on Complexity
-![complexity](/notes.png)
+![complexity](notes.png)
 
 ## Formal Notes
 Let's break down the **space complexity** for the quadtree-solving algorithm using the same method.
