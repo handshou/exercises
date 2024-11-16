@@ -18,9 +18,9 @@ class QuadTree {
     this.processQuad = function() {
       assert(Array.isArray(this.getGrid()), 'Expect this.getGrid() to be a non-null array')
       let val = this.getGrid()[0][0]
-      const isLeaf = Number(this.getGrid().flat().every((element) => {
-        return element === 1 || element === 0 // ensure element is either 1 or 0
-      }) && this.getGrid().flat().every((element, _index, arr) => element === arr[0]))
+      const isLeaf = Number(this.getGrid().flat().every((element, _index, arr) => {
+        return (element === 1 || element === 0) && element === arr[0] // ensure element is either 1 or 0
+      }))
       this.setIsLeaf(isLeaf)
       this.setVal(val)
     }
