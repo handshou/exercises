@@ -50,6 +50,7 @@ Run: `node main.js`
    - Combined with tree construction, the overall time complexity remains:
    $$O(N \cdot \log(N))$$
 
+
 ### Space Complexity
 1. **Recursive Stack**:
    - Each level of recursion splits the grid into 4 quadrants and processes them.
@@ -72,25 +73,7 @@ $$
 
 ## New Strategy
 
-### Time Complexity
-1. **Recursive Stack**:
-   - Each level of recursion splits the grid into 4 quadrants and processes them.
-   - Maximum depth of recursion: $\log(N)$ (as the grid size is halved at each step).
-   - **Space Complexity for Recursive Stack**: $O(\log(N))$.
-
-2. **Tree Storage**:
-   - The tree consists of $O(N)$ nodes.
-   - Each node stores a reference to its child nodes and a small amount of metadata.
-   - **Space Complexity for Tree Storage**: $O(N)$.
-
-3. **Temporary Storage (e.g., `slice()` results)**:
-   - Temporary arrays for slicing are proportional to the size of the quadrants.
-   - Total space for temporary storage: $O(N)$.
-
-### Total Space Complexity:
-$$
-O(N)
-$$
+...
 
 ## Miscellaneous
 
