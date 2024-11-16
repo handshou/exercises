@@ -7,14 +7,20 @@ let testMatch
 // Main function
 const main = () => {
   let qtree_1 = new QuadTree2(ex_grid_1)
-  console.log('test_1', testMatch(qtree_1.render(), ex_output_1))
-  console.log('my_output:', qtree_1.render())
-  console.log('ex_output:', ex_output_1)
+  let result_1 = testMatch(qtree_1.render(), ex_output_1)
+  console.log('test_1', result_1)
+  if (!result_1) {
+    console.log('my_output:', qtree_1.render())
+    console.log('ex_output:', ex_output_1)
+  }
 
   let qtree_2 = new QuadTree2(ex_grid_2)
-  console.log('test_2', testMatch(qtree_2.render(), ex_output_2))
-  console.log('my_output_2:', qtree_2.render())
-  console.log('ex_output:', ex_output_2)
+  let result_2 = testMatch(qtree_2.render(), ex_output_2)
+  console.log('test_2', result_2)
+  if (!result_2) {
+    console.log('my_output:', qtree_2.render())
+    console.log('ex_output:', ex_output_1)
+  }
 }
 
 // Populate variables
