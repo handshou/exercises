@@ -11,8 +11,6 @@
 
 Run: `node main.js`
 
-# Quadtree (Nov 2024)
-
 ## Slice(), Flat(), Every()
 
 ### Key Operations
@@ -37,8 +35,6 @@ Run: `node main.js`
    - This method traverses the entire tree recursively.
    - Every node is visited once.
    - **Time Complexity**: $O(N)$ for traversal across $N$ elements.
-
----
 
 ## Current Strategy
 
@@ -78,8 +74,6 @@ $$
 O(N)
 $$
 
----
-
 ## New Strategy
 
 ### Time Complexity
@@ -101,8 +95,6 @@ $$
 $$
 O(N)
 $$
-
----
 
 ## Miscellaneous
 
