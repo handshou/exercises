@@ -50,6 +50,10 @@ Run: `node main.js`
    - Combined with tree construction, the overall time complexity remains:
    $$O(N \cdot \log(N))$$
 
+### Total time complexity:
+$$
+O(N \cdot \log(N))
+$$
 
 ### Space Complexity
 1. **Recursive Stack**:
