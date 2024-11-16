@@ -75,6 +75,9 @@ $$
 
 ...
 
+## Written Notes
+![written notes](notes.png)
+
 ## Miscellaneous
 
 ### Summary of Complexities
