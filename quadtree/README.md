@@ -142,7 +142,7 @@ $$
 
 ## Sparse QuadTree Analysis
 
-For non-perfect QuadTrees with sparse data, the number of nodes per level (\(n_i\)) may be fewer than \(4^i\). For sparsity modeled as \(n_i = c \cdot 4^i\), where \(c < 1\) is a sparsity factor:
+For non-perfect QuadTrees with sparse data, the number of nodes per level $(\(n_i\))$ may be fewer than $\(4^i\)$. For sparsity modeled as $\(n_i = c \cdot 4^i\)$, where $\(c < 1\)$ is a sparsity factor:
 
 The total number of nodes becomes:
 
@@ -162,14 +162,12 @@ $$
 The complexities can be summarized as:
 
 - **Time Complexity**:
-  - Perfect QuadTree: \(O(4^D)\)
-  - Sparse QuadTree: \(O(c \cdot 4^D)\)
+  - Perfect QuadTree: $\(O(4^D)\)$
+  - Sparse QuadTree: $\(O(c \cdot 4^D)\)$
 
 - **Space Complexity**:
-  - Full Storage: \(O(4^D)\)
-  - Depth-First Path: \(O(D)\)
-
----
+  - Full Storage: $\(O(4^D)\)$
+  - Depth-First Path: $\(O(D)\)$
 
 ## Miscellaneous
 
@@ -207,9 +205,10 @@ Each node may have up to four children (quadrants). Hence, the complexity of man
 ### **Key Observations:**
 - The number of nodes increases geometrically at each level: $4^0, 4^1, 4^2, \dots$, up to depth $D$.
 - The total number of nodes $N$ in a perfect QuadTree is given by:
-  $$
-  N = \sum_{i=0}^{D} 4^i = \frac{4^{D+1} - 1}{3}
-  $$
+
+$$
+N = \sum_{i=0}^{D} 4^i = \frac{4^{D+1} - 1}{3}
+$$
 
 ## **2. Taylor Series Analogy for Approximation**
 
@@ -220,11 +219,13 @@ The Taylor series allows approximations for functions near a certain point. Simi
 ### **Time Complexity Estimation**
 
 Consider an operation like rendering all nodes. The traversal cost is proportional to the number of nodes, so the time complexity is $O(N)$. Expanding $N$ from the formula:
+
 $$
 N \approx \frac{4^D}{3} \quad \text{for large } D.
 $$
 
 Using the first term as an approximation:
+
 $$
 \text{Time Complexity} \approx O(4^D).
 $$
@@ -235,14 +236,16 @@ If you're processing each node (e.g., printing or summing values), $O(4^D)$ beco
 
 The space complexity depends on how many nodes are stored in memory:
 - If the QuadTree is built and stored entirely in memory, space complexity is proportional to $N$:
-  $$
-  \text{Space Complexity} \approx O(4^D).
-  $$
+
+$$
+\text{Space Complexity} \approx O(4^D).
+$$
 
 - For depth-first algorithms, if only the current path from the root to a leaf is stored in memory, the space complexity depends on the depth $D$:
-  $$
-  \text{Space Complexity} \approx O(D).
-  $$
+
+$$
+\text{Space Complexity} \approx O(D).
+$$
 
 ## **3. Refining Estimates**
 
@@ -263,9 +266,11 @@ Using the Taylor series analogy:
 ### **Example Analysis for Rendering**
 - **Perfect QuadTree:** $N \approx \frac{4^D}{3}$. Complexity is $O(4^D)$.
 - **Sparse QuadTree:** If sparsity reduces each level to $n_i = c \cdot 4^i$, total nodes become:
-  $$
-  N_{\text{sparse}} = \sum_{i=0}^D c \cdot 4^i = c \cdot \frac{4^{D+1} - 1}{3}.
-  $$
+
+$$
+N_{\text{sparse}} = \sum_{i=0}^D c \cdot 4^i = c \cdot \frac{4^{D+1} - 1}{3}.
+$$
+
   Complexity is $O(c \cdot 4^D)$.
 
 ## **Conclusion**
