@@ -65,15 +65,10 @@ class QuadTree {
   }
   logBase(n, base = Math.E) { Math.log(n) / Math.log(base) }
 
+  // stack size: number of levels = log~4 n = log~4(len * len)
   build(result = [], stack = new Array(this.logBase(this.len * this.len, 4))) {
-    // breadth first search - gud
-    // number of levels = log~4 n = log~4(len * len)
-    // use stack, if no children, split recursively and add to stack
-    // if grid size === 1, process and pop next on stack
-    // if have children, process and pop next on stack
-    // if root, print and go to top left child 
 
-    // depth first search - no gud
+    // depth first search to build
     if (!this.isProcessed) {
       if (this.len === 1) {
         this.processNode()
@@ -101,28 +96,7 @@ class QuadTree {
 
     }
 
-    //stack.forEach((level, stack_index) => {
-    //  level.forEach((node) => {
-
-    //    result.push(node.print())
-    //    stack[stack_index].pop()
-    //    node.getChildren().forEach(child => {
-
-    //      result.push(child.print())
-    //    })
-    //  })
-    //})
-
-    //if (!this.isLeaf) {
-    //  result.push(this.tl.print())
-    //  result.push(this.tr.print())
-    //  result.push(this.bl.print())
-    //  result.push(this.br.print())
-    //}
-
-    // result processing
-    // printing has to be breadth first, the tail null values are discarded
-    // discarded by popping all tail leaf nodes
+    // idea for working with a stack
     // when node with isLeaf is false, print children nodes tl tr bl br 
     // if isLeaf is true, print null for children nodes
 
@@ -156,4 +130,5 @@ class QuadTree {
     return result
   }
 }
+
 module.exports = QuadTree
