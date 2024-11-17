@@ -167,7 +167,7 @@ The complexities can be summarized as:
 
 ## Miscellaneous
 
-### Summary of Complexities
+### Summary of Complexities of my old implemented QuadTree
 
 | **Operation**        | **Time Complexity**       | **Space Complexity**       |
 |-----------------------|---------------------------|-----------------------------|
@@ -184,7 +184,7 @@ The concise quadtree is more imperative than the first quadtree class. To achiev
 
 The concise quadtree improves space complexity, from $O(N \cdot \log(N))$ to $O(N)$. The $O(\log(N))$ improvement is due to discarding a copy of elements at each level of the quadtrees.
 
-## **1. Understanding the QuadTree Complexity**
+## **1. Understanding the General QuadTree Complexity**
 
 For a QuadTree, the operations like construction, traversal, or rendering typically depend on:
 - **Tree depth ($D$)**: The maximum depth of the QuadTree.
