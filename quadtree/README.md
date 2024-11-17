@@ -6,7 +6,7 @@
 .
 ├── main.js                 // Test logic
 ├── quadtree.js             // Class v1  
-└── improved_quadtree.js    // Class v2 (*new*)
+└── quadtree_concise.js     // Class v2 (new)
 ```
 
 Run: `node main.js`
