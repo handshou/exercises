@@ -95,11 +95,7 @@ $$
 ## New Strategy, Written Notes
 ![written notes](notes.png)
 
-# QuadTree Complexity Analysis
-
-This document provides an analysis of the time and space complexity for operations on a QuadTree using mathematical approximations.
-
-## Time Complexity
+## General Time Complexity
 
 For a QuadTree:
 - **Tree depth (\(D\))**: The maximum depth of the QuadTree.
@@ -124,7 +120,7 @@ $$
 \text{Time Complexity} \approx O(4^D).
 $$
 
-## Space Complexity
+## General Space Complexity
 
 The space complexity depends on how many nodes are stored in memory:
 
@@ -187,12 +183,6 @@ Imperative focuses on the *how*, while declarative focuses on the *what*.
 The concise quadtree is more imperative than the first quadtree class. To achieve conciseness, named functions `_splitGrid` and `_processGrid` are removed. Instead, additional parameters in the constructor and in-line splitting when invoking the constructor are used.
 
 The concise quadtree improves space complexity, from $O(N \cdot \log(N))$ to $O(N)$. The $O(\log(N))$ improvement is due to discarding a copy of elements at each level of the quadtrees.
-
----
-
-# QuadTree Complexity Analysis Using Taylor Series Analogy
-
-Using Taylor series for estimating the time and space complexity of a QuadTree problem is not a direct application of the series itself but an analogy to break down complex operations into simpler, more approximate terms. Here's how we can approach it conceptually:
 
 ## **1. Understanding the QuadTree Complexity**
 
