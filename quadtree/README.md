@@ -95,6 +95,82 @@ $$
 ## New Strategy, Written Notes
 ![written notes](notes.png)
 
+# QuadTree Complexity Analysis
+
+This document provides an analysis of the time and space complexity for operations on a QuadTree using mathematical approximations.
+
+## Time Complexity
+
+For a QuadTree:
+- **Tree depth (\(D\))**: The maximum depth of the QuadTree.
+- **Number of nodes (\(N\))**: Total number of nodes in the tree.
+
+Each node may have up to four children (quadrants). The total number of nodes in a perfect QuadTree is given by:
+
+$$
+N = \sum_{i=0}^{D} 4^i = \frac{4^{D+1} - 1}{3}
+$$
+
+For large \(D\), we approximate \(N\) as:
+
+$$
+N \approx \frac{4^D}{3}.
+$$
+
+### **Time Complexity for Rendering**
+If rendering involves visiting every node in the tree, the time complexity is proportional to \(N\), so:
+
+$$
+\text{Time Complexity} \approx O(4^D).
+$$
+
+## Space Complexity
+
+The space complexity depends on how many nodes are stored in memory:
+
+- **Full Storage in Memory**: If the entire QuadTree is stored in memory, the space complexity is proportional to \(N\):
+
+$$
+\text{Space Complexity} \approx O(4^D).
+$$
+
+- **Depth-First Algorithms**: If only the current path from the root to a leaf is stored in memory, the space complexity depends on the depth \(D\):
+
+$$
+\text{Space Complexity} \approx O(D).
+$$
+
+## Sparse QuadTree Analysis
+
+For non-perfect QuadTrees with sparse data, the number of nodes per level (\(n_i\)) may be fewer than \(4^i\). For sparsity modeled as \(n_i = c \cdot 4^i\), where \(c < 1\) is a sparsity factor:
+
+The total number of nodes becomes:
+
+$$
+N_{\text{sparse}} = \sum_{i=0}^D c \cdot 4^i = c \cdot \frac{4^{D+1} - 1}{3}.
+$$
+
+### **Time Complexity for Sparse QuadTrees**
+For traversal or rendering:
+
+$$
+\text{Time Complexity} \approx O(c \cdot 4^D).
+$$
+
+## Conclusion
+
+The complexities can be summarized as:
+
+- **Time Complexity**:
+  - Perfect QuadTree: \(O(4^D)\)
+  - Sparse QuadTree: \(O(c \cdot 4^D)\)
+
+- **Space Complexity**:
+  - Full Storage: \(O(4^D)\)
+  - Depth-First Path: \(O(D)\)
+
+---
+
 ## Miscellaneous
 
 ### Summary of Complexities
@@ -113,4 +189,86 @@ Imperative focuses on the *how*, while declarative focuses on the *what*.
 The concise quadtree is more imperative than the first quadtree class. To achieve conciseness, named functions `_splitGrid` and `_processGrid` are removed. Instead, additional parameters in the constructor and in-line splitting when invoking the constructor are used.
 
 The concise quadtree improves space complexity, from $O(N \cdot \log(N))$ to $O(N)$. The $O(\log(N))$ improvement is due to discarding a copy of elements at each level of the quadtrees.
+
+---
+
+# QuadTree Complexity Analysis Using Taylor Series Analogy
+
+Using Taylor series for estimating the time and space complexity of a QuadTree problem is not a direct application of the series itself but an analogy to break down complex operations into simpler, more approximate terms. Here's how we can approach it conceptually:
+
+## **1. Understanding the QuadTree Complexity**
+
+For a QuadTree, the operations like construction, traversal, or rendering typically depend on:
+- **Tree depth ($D$)**: The maximum depth of the QuadTree.
+- **Number of nodes ($N$)**: Total number of nodes in the tree.
+  
+Each node may have up to four children (quadrants). Hence, the complexity of many operations grows with the depth and the branching factor.
+
+### **Key Observations:**
+- The number of nodes increases geometrically at each level: $4^0, 4^1, 4^2, \dots$, up to depth $D$.
+- The total number of nodes $N$ in a perfect QuadTree is given by:
+  $$
+  N = \sum_{i=0}^{D} 4^i = \frac{4^{D+1} - 1}{3}
+  $$
+
+## **2. Taylor Series Analogy for Approximation**
+
+The Taylor series allows approximations for functions near a certain point. Similarly:
+- **For time complexity:** We analyze how the computation grows as $N$ or $D$ increases.
+- **For space complexity:** We approximate how memory usage grows.
+
+### **Time Complexity Estimation**
+
+Consider an operation like rendering all nodes. The traversal cost is proportional to the number of nodes, so the time complexity is $O(N)$. Expanding $N$ from the formula:
+$$
+N \approx \frac{4^D}{3} \quad \text{for large } D.
+$$
+
+Using the first term as an approximation:
+$$
+\text{Time Complexity} \approx O(4^D).
+$$
+
+If you're processing each node (e.g., printing or summing values), $O(4^D)$ becomes your worst-case estimate.
+
+### **Space Complexity Estimation**
+
+The space complexity depends on how many nodes are stored in memory:
+- If the QuadTree is built and stored entirely in memory, space complexity is proportional to $N$:
+  $$
+  \text{Space Complexity} \approx O(4^D).
+  $$
+
+- For depth-first algorithms, if only the current path from the root to a leaf is stored in memory, the space complexity depends on the depth $D$:
+  $$
+  \text{Space Complexity} \approx O(D).
+  $$
+
+## **3. Refining Estimates**
+
+For non-perfect QuadTrees (with sparse data):
+- **Sparse Nodes:** Nodes may not always split into 4 children, leading to fewer than $4^D$ total nodes. In such cases, you replace $4^i$ with the actual number of nodes per level $n_i$.
+
+Using the Taylor series analogy:
+1. **Expand around a reference point (e.g., a full tree):**
+   - Approximate sparsity by modeling $n_i = c \cdot 4^i$, where $c < 1$ reflects sparsity.
+
+2. **Truncate higher-order terms:**
+   - Keep leading terms to estimate bounds:
+     - For traversal: Keep the terms related to total nodes.
+     - For depth-sensitive operations: Use terms related to $D$.
+
+## **4. Practical Application**
+
+### **Example Analysis for Rendering**
+- **Perfect QuadTree:** $N \approx \frac{4^D}{3}$. Complexity is $O(4^D)$.
+- **Sparse QuadTree:** If sparsity reduces each level to $n_i = c \cdot 4^i$, total nodes become:
+  $$
+  N_{\text{sparse}} = \sum_{i=0}^D c \cdot 4^i = c \cdot \frac{4^{D+1} - 1}{3}.
+  $$
+  Complexity is $O(c \cdot 4^D)$.
+
+## **Conclusion**
+
+The Taylor series analogy helps approximate the **leading factors** of complexity (like $4^D$) while ignoring higher-order corrections for smaller tree levels. This approach provides insight into scaling behavior for large $D$ or $N$, useful for estimating bounds without directly calculating every operation.
 
